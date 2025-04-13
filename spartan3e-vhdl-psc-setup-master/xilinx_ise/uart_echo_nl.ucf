@@ -1,0 +1,26 @@
+# PlanAhead Generated IO constraints 
+NET "clk" IOSTANDARD = LVCMOS33;
+
+# PlanAhead Generated physical constraints 
+NET "clk" LOC = C9;
+NET "reset" LOC = V16;
+
+# PlanAhead Generated IO constraints 
+NET "reset" IOSTANDARD = LVTTL;
+NET "reset" PULLDOWN;
+
+# PlanAhead Generated physical constraints 
+NET "tx" LOC = M14;
+
+# PlanAhead Generated IO constraints 
+NET "tx" IOSTANDARD = LVTTL;
+NET "tx" DRIVE = 8;
+
+# PlanAhead Generated physical constraints 
+NET "rx" LOC = R7;
+
+# PlanAhead Generated IO constraints 
+NET "rx" IOSTANDARD = LVTTL;
+#Created by Constraints Editor (xc3s500e-fg320-4) - 2025/03/26
+NET "clk" TNM_NET = clk;
+TIMESPEC TS_clk = PERIOD "clk" 20 ns HIGH 50%;
