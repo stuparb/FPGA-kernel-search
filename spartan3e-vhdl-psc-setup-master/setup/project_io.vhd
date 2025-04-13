@@ -82,7 +82,7 @@ BEGIN
                     read_counter <= read_counter + 1;
                     pixel_index <= pixel_index + 1;
 
-                    IF read_counter < 8 THEN
+                    IF read_counter < 502 THEN
                         in_index <= pixel_index + 1;
                         in_read_enable <= '1';
                         state <= 1;
@@ -91,19 +91,19 @@ BEGIN
                     END IF;
 
                 WHEN 3 =
-                    FOR y IN 0 TO 499 LOOP
+                    
                     
 
-                        FOR i IN 0 TO 2 LOOP
-                            sum := sum +
-                                signed(window(nb1)) * to_signed(row1(i)) + --//////
-                                signed(window(nb2)) * to_signed(row2(i)) + --//////
-                                signed(window(nb3)) * to_signed(row3(i)); 
+                    FOR i IN 0 TO 2 LOOP
+                        sum := sum +
+                            signed(window(nb1)) * to_signed(row1(i)) + --//////
+                            signed(window(nb2)) * to_signed(row2(i)) + --//////
+                            signed(window(nb3)) * to_signed(row3(i)); 
 
-                            nb1 := nb1 + 1;
-                            nb2 := nb2 + 1;
-                            nb3 := nb3 + 1;
-                        END LOOP;
+                        nb1 := nb1 + 1;
+                        nb2 := nb2 + 1;
+                        nb3 := nb3 + 1;
+                    END LOOP;
                     nb1 := nb1 - 2;
                     nb2 := nb2 - 2;
                     nb3 := nb3 - 2;
@@ -111,6 +111,7 @@ BEGIN
                     
 
                     out_index <= y;
+                    state <= 4
                 END LOOP;
 
                 WHEN 4 => -- Priprema za izlaz
@@ -134,6 +135,7 @@ BEGIN
                         done <= '1';
                         state <= 6;
                     ELSE
+                        y <= y + 1
                         pixel_index <= y + 1;
                         read_counter <= 0;
                         in_index <= y + 1;
